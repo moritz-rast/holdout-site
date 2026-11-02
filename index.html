@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F2EE">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0D1530">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161513">
   <meta name="format-detection" content="telephone=no">
   <title>Holdout – a 21-day home fitness challenge app</title>
   <meta name="description" content="Holdout is a home fitness challenge app in development. Join a 21-day challenge with an entry you choose and do your daily workout in front of your phone camera. Coming soon in Austria.">
@@ -24,15 +24,16 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="wrap">
-      <a class="wordmark" href="index.html">Holdout</a>
+      <a class="logo" href="index.html" aria-label="Holdout, home">holdout<i>.</i></a>
       <span class="tag">Coming soon · Austria</span>
     </div>
   </header>
@@ -40,176 +41,231 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap">
-        <div class="hero-copy">
-          <h1 id="hero-title">Put something on the line. Show up for 21 days.</h1>
-          <p class="lead">Holdout is a home fitness challenge app. Join a 21-day challenge with an entry you choose, do your daily workout in front of your phone camera, and finish to get your entry back, plus a share of what remains from those who didn't.</p>
-          <div class="action">
-            <a class="button" href="mailto:moritz@rast.at?subject=Holdout%20launch">Get notified</a>
-            <p class="action-note">Opens your email app. Or write to <a href="mailto:moritz@rast.at?subject=Holdout%20launch">moritz@rast.at</a>.</p>
-          </div>
-          <p class="status-note">The app isn't available yet, and this website doesn't take payments.</p>
-        </div>
-
-        <div class="phone" role="img" aria-label="Illustration of the Holdout app on a phone: day 12 of 21, push-ups 40 of 40 done, with a check mark and a progress bar.">
-          <div class="phone-screen">
-            <div class="phone-notch"></div>
-            <p class="phone-day">Day 12 of 21</p>
-            <div class="phone-bar"><span></span></div>
-            <div class="phone-card">
-              <p>
-                <span class="phone-label">Push-ups</span>
-                <span class="phone-count">40 / 40</span>
-              </p>
-              <svg class="phone-check" viewBox="0 0 34 34" fill="none" aria-hidden="true">
-                <path d="M10 17.5l5 5 9-10.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 class="rise" id="hero-title"><span>Put something on the line.</span> <span>Show up for 21 days<span class="dot">.</span></span></h1>
+            <p class="lead rise rise-2">Holdout is a home fitness challenge app. Join a 21-day challenge with an entry you choose, do your daily workout in front of your phone camera, and finish to get your entry back, plus a share of what remains from those who didn't.</p>
+            <div class="action rise rise-3">
+              <a class="button" href="mailto:moritz@rast.at?subject=Holdout%20launch">Get notified</a>
+              <p class="note">Opens your email app. Or write to <a href="mailto:moritz@rast.at?subject=Holdout%20launch">moritz@rast.at</a>.<br>The app isn't available yet, and this website doesn't take payments.</p>
             </div>
           </div>
+          <div class="hero-phone rise rise-2"><div class="phone" role="img" aria-label="The Holdout app on a phone, with example numbers: day 12 of 21, 12 days in a row, and 40 of 40 push-ups done with a green check mark."><div class="screen"><div class="scr">
+  <div class="s-top"><span class="s-logo">holdout<i>.</i></span><span>Sat, 10 Oct</span></div>
+  <p class="s-hello">Nice work, Lena</p>
+  <p class="s-title">Day 12 of 21</p>
+  <div class="s-card"><div class="s-row"><span class="s-strong">12 days in a row</span><span class="s-muted">9 to go</span></div><div class="s-chain"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="ok"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="s-card">
+    <div class="s-done"><span class="s-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="s-big">40 / 40 push-ups</p><p class="s-ok">Done for today</p></div></div>
+    <div class="s-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>Next workout: Sun 11 Oct</div>
+  </div>
+  <div class="s-stats"><div class="s-card"><span class="s-muted">Counted</span><p class="s-stat">40</p></div><div class="s-card"><span class="s-muted">Time</span><p class="s-stat">6:48</p></div><div class="s-card"><span class="s-muted">Still in</span><p class="s-stat">46/50</p></div></div>
+  <div class="s-card"><p class="s-strong">31 have finished today</p><p class="s-muted">Challenge ends 19 Oct</p></div>
+  <div class="s-tabs"><span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg>Today</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4h11l-2 4 2 4H6"/></svg>Challenges</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M16 13h.01"/></svg>Wallet</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>Profile</span></div>
+</div></div></div></div>
+        </div>
+        <div class="hero-chain">
+          <div class="chain wave" aria-hidden="true"><i class="now"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="chain-caption" aria-hidden="true"><span>This page has 21 days too. You're on day <b data-day>1</b>.</span><span>Keep scrolling to show up.</span></div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="how-title">
+    <section class="section how" aria-labelledby="how-title">
       <div class="wrap">
-        <h2 id="how-title">How it works</h2>
-        <ol class="grid-3" role="list">
-          <li class="card">
-            <span class="step-number">Step 1</span>
-            <h3>Choose</h3>
-            <p>Pick a challenge and an entry, from €25.</p>
+        <h2 class="section-title how-title" id="how-title">How it works</h2>
+        <ol class="steps" role="list">
+          <li class="step step-1">
+            <div class="step-text">
+              <span class="step-label">Step 1</span>
+              <h3>Choose</h3>
+              <p>Pick a challenge and an entry, from €25.</p>
+            </div>
+            <div class="phone" role="img" aria-label="App screen with example numbers: a 21-day push-up challenge at 40 a day, with entry options of 25, 50 and 100 euros and 100 euros selected. Finishing returns the entry plus a share. Missing a day sends the entry to the finishers."><div class="screen"><div class="scr">
+  <div class="s-top"><span class="s-logo">holdout<i>.</i></span><span class="s-badge">Starts in 9 days</span></div>
+  <p class="s-hello">40 a day · 21 days</p>
+  <p class="s-title">Push-up challenge</p>
+  <div class="s-tiles">
+    <div class="s-card"><span class="s-muted">Joined</span><p class="s-tile-num">27</p></div>
+    <div class="s-card"><span class="s-muted">In the pool</span><p class="s-tile-num">€1,240</p></div>
+  </div>
+  <p class="s-ask">Choose your entry</p>
+  <div class="s-choices"><span>€25</span><span>€50</span><span class="on">€100</span><span>Other</span></div>
+  <div class="s-card">
+    <div class="s-outcome"><span class="s-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Finish all 21 days<b class="s-ok">€100 + share</b></div>
+    <div class="s-outcome"><span class="s-mark off"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>Miss a day<b class="s-muted">€100 to finishers</b></div>
+  </div>
+  <p class="s-rule">Ill or injured? Withdraw with a doctor's note and get your entry back.</p>
+  <div class="s-cta">Join with €100</div>
+  <p class="s-foot">18+ · Austria only · Free to leave until the start</p>
+</div></div></div>
           </li>
-          <li class="card">
-            <span class="step-number">Step 2</span>
-            <h3>Work out</h3>
-            <p>Do your daily workout; reps are counted on your phone by on-device pose tracking.</p>
+          <li class="step step-2">
+            <div class="step-text">
+              <span class="step-label">Step 2</span>
+              <h3>Work out</h3>
+              <p>Do your daily workout; reps are counted on your phone by on-device pose tracking.</p>
+            </div>
+            <div class="phone" role="img" aria-label="App workout screen: the phone camera tracks body points during a push-up while a large counter counts up towards 40."><div class="screen"><div class="scr scr-work" data-workout>
+  <div class="s-floor"></div>
+  <svg class="s-body" data-rest="0" data-pose="pushup" viewBox="20 300 350 200" aria-hidden="true"><circle class="bones-head" data-j="head" cx="296.0" cy="374.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M276.0 392.0 L175.4 434.3 L104.8 464.0 L62.0 482.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M276.0 392.0 L274.0 437.0 L272.0 482.0"/><path class="bones-line" data-b="line-neck" d="M296.0 374.0 L276.0 392.0"/><path class="bones-line" data-b="line-arm" d="M276.0 392.0 L274.0 437.0 L272.0 482.0"/><path class="bones-line" data-b="line-torso" d="M276.0 392.0 L175.4 434.3 L104.8 464.0 L62.0 482.0"/><circle class="bones-joint" data-j="head" cx="296.0" cy="374.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="276.0" cy="392.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="274.0" cy="437.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="272.0" cy="482.0" r="6"/><circle class="bones-joint" data-j="hip" cx="175.4" cy="434.3" r="7"/><circle class="bones-joint" data-j="knee" cx="104.8" cy="464.0" r="7"/><circle class="bones-joint" data-j="ankle" cx="62.0" cy="482.0" r="6"/></svg>
+  <div class="s-frame"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Whole body in frame</div>
+  <div class="s-cue" data-cue>Counted</div>
+  <div class="s-panel">
+    <span class="s-muted">Push-ups · Day 12</span>
+    <div class="s-count-row"><span class="s-count" data-count>37</span><div class="s-togo"><p class="s-big" data-togo>3 to go</p><p class="s-muted">of 40 · 04:12</p></div></div>
+    <div class="s-bar"><i data-fill></i></div>
+    <div class="s-btns"><span>Voice</span><span class="fill">Pause</span></div>
+  </div>
+</div></div></div>
           </li>
-          <li class="card">
-            <span class="step-number">Step 3</span>
-            <h3>Finish</h3>
-            <p>Finish all 21 days and get at least your entry back, plus a share of what remains from the entries of those who didn't finish.</p>
+          <li class="step step-3">
+            <div class="step-text">
+              <span class="step-label">Step 3</span>
+              <h3>Finish</h3>
+              <p>Finish all 21 days and get at least your entry back, plus a share of what remains from the entries of those who didn't finish.</p>
+            </div>
+            <div class="phone" role="img" aria-label="App result screen in orange with example numbers: 21 of 21, you finished. 100 euro entry back plus a 46 euro 66 share, 146 euro 66 in total."><div class="screen"><div class="scr scr-result">
+  <p class="s-over">21-day push-up challenge</p>
+  <p class="s-giant">21/21</p>
+  <p class="s-finished">You finished.</p>
+  <p class="s-summary">840 push-ups. Not one day missed. 30 of 50 made it.</p>
+  <div class="s-chain"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+  <div class="s-receipt">
+    <div><span>Your entry back</span><b>€100.00</b></div>
+    <div><span>Your share</span><b class="plus">+ €46.66</b></div>
+    <div class="total"><span>Your payout</span><b>€146.66</b></div>
+  </div>
+  <p class="s-arrive">Paid out after the 24-hour report window</p>
+  <div class="s-result-btns"><span>Share</span><span class="fill">Next challenge</span></div>
+</div></div></div>
           </li>
         </ol>
-        <p class="callout">Miss a day and you lose your entry, unless you withdraw with a doctor's note.</p>
+        <p class="screens-note">Screens from the app in development, with example numbers.</p>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="example-title">
+    <section class="section miss" aria-labelledby="miss-title">
+      <div class="wrap in-view">
+        <h2 id="miss-title">Miss a day and you lose your entry.</h2>
+        <p>Unless you withdraw with a doctor's note. That's what makes showing up matter, so we say it up front.</p>
+        <div class="chain miss-chain" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="gone"></i><i class="after"></i><i class="after"></i><i class="after"></i><i class="after"></i><i class="after"></i><i class="after"></i><i class="after"></i><i class="after"></i></div>
+      </div>
+    </section>
+
+    <section class="section pool" aria-labelledby="pool-title" data-pool>
       <div class="wrap">
-        <div class="section-head">
-          <h2 id="example-title">An example pool</h2>
-          <p>Imagine 50 people join with €100 each, so the pool is €5,000. 30 finish and 20 don't.</p>
-        </div>
-        <div class="example">
-          <div class="people" aria-hidden="true">
-            <span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span>
-            <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
+        <h2 class="section-title" id="pool-title">See where every euro goes</h2>
+        <p class="section-lead" data-out="intro">Imagine 50 people join with €100 each, so the pool is €5,000. 30 finish and 20 don't.</p>
+        <div class="pool-grid">
+          <div>
+            <div class="pool-people" aria-hidden="true"><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="pool-key" aria-hidden="true"><span><span data-out="finished-key">30</span> finished</span><span><span data-out="missed-key">20</span> didn't</span></div>
+            <div class="controls" role="group" aria-label="Try different numbers">
+              <fieldset class="entries">
+                <legend class="control-label">Entry for everyone</legend>
+                <div class="entry-options">
+                  <label><input type="radio" name="entry" value="25"><span>€25</span></label>
+                  <label><input type="radio" name="entry" value="50"><span>€50</span></label>
+                  <label><input type="radio" name="entry" value="100" checked><span>€100</span></label>
+                </div>
+              </fieldset>
+              <div>
+                <label class="control-label" for="finishers"><span data-out="finished">30</span> of 50 finish</label>
+                <input class="slider" id="finishers" type="range" min="20" max="50" value="30" data-finishers>
+              </div>
+            </div>
           </div>
-          <dl class="ledger">
-            <div>
-              <dt>Entries of the 20 who didn't finish</dt>
-              <dd>€2,000.00</dd>
+          <div class="ledger-card">
+            <dl class="ledger">
+              <div><dt data-out="theirs-label">Entries of the 20 who didn't finish</dt><dd data-out="theirs">€2,000.00</dd></div>
+              <div><dt data-out="fee-label">Holdout's fee, 12% of the €5,000 pool</dt><dd data-out="fee">−€600.00</dd></div>
+              <div><dt data-out="shared-label">Shared among the 30 who finished</dt><dd data-out="shared">€1,400.00</dd></div>
+            </dl>
+            <div class="result">
+              <p><span class="result-label">Each person who finished gets</span><span class="result-amount" data-out="each">€146.66</span></p>
+              <p class="result-other">Each person who didn't finish gets €0</p>
             </div>
-            <div>
-              <dt>Holdout's fee, 12% of the €5,000 pool</dt>
-              <dd>−€600.00</dd>
-            </div>
-            <div>
-              <dt>Shared among the 30 who finished</dt>
-              <dd>€1,400.00</dd>
-            </div>
-            <div class="ledger-result">
-              <dt>Each person who finished gets</dt>
-              <dd>€146.66</dd>
-            </div>
-            <div class="ledger-result">
-              <dt>Each person who didn't finish gets</dt>
-              <dd>€0</dd>
-            </div>
-          </dl>
+            <p class="pool-message" data-out="message" aria-live="polite">The fee comes only from the entries of those who didn't finish.</p>
+          </div>
         </div>
-        <p class="fine-print">€146.66 is the €100 entry plus a €46.66 share, rounded down to the cent. This is an illustration, not a forecast. What you get depends on who finishes.</p>
+        <p class="fine-print" data-out="explain">€146.66 is the €100 entry plus a €46.66 share, rounded down to the cent. This is an illustration, not a forecast. What you get depends on who finishes.</p>
       </div>
     </section>
 
     <section class="section" aria-labelledby="challenges-title">
       <div class="wrap">
-        <div class="section-head">
-          <h2 id="challenges-title">The challenges</h2>
-          <p>Each challenge has its own daily target, shown before you join. Split it into as many sets as you like. Some examples:</p>
-        </div>
-        <ul class="grid-3" role="list">
-          <li class="card">
-            <h3>Push-ups</h3>
-            <p class="amount">40 <small>a day</small></p>
-          </li>
-          <li class="card">
-            <h3>Squats</h3>
-            <p class="amount">60 <small>a day</small></p>
-          </li>
-          <li class="card">
-            <h3>Plank</h3>
-            <p class="amount">2:00 <small>a day</small></p>
-          </li>
+        <h2 class="section-title" id="challenges-title">The challenges</h2>
+        <p class="section-lead">Each challenge has its own daily target, shown before you join. Split it into as many sets as you like. Some examples:</p>
+        <ul class="tiles" role="list">
+          <li class="tile in-view"><div class="tile-view"><svg class="" data-rest="0" data-pose="pushup" viewBox="0 270 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="296.0" cy="374.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M276.0 392.0 L175.4 434.3 L104.8 464.0 L62.0 482.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M276.0 392.0 L274.0 437.0 L272.0 482.0"/><path class="bones-line" data-b="line-neck" d="M296.0 374.0 L276.0 392.0"/><path class="bones-line" data-b="line-arm" d="M276.0 392.0 L274.0 437.0 L272.0 482.0"/><path class="bones-line" data-b="line-torso" d="M276.0 392.0 L175.4 434.3 L104.8 464.0 L62.0 482.0"/><circle class="bones-joint" data-j="head" cx="296.0" cy="374.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="276.0" cy="392.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="274.0" cy="437.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="272.0" cy="482.0" r="6"/><circle class="bones-joint" data-j="hip" cx="175.4" cy="434.3" r="7"/><circle class="bones-joint" data-j="knee" cx="104.8" cy="464.0" r="7"/><circle class="bones-joint" data-j="ankle" cx="62.0" cy="482.0" r="6"/></svg></div><div class="tile-body"><h3>Push-ups</h3><p class="tile-amount">40 <small>a day</small></p></div></li>
+          <li class="tile in-view"><div class="tile-view"><svg class="" data-rest="1" data-pose="squat" viewBox="0 262 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="232.0" cy="362.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M218.0 384.0 L182.0 432.0 L232.0 446.0 L195.0 480.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M218.0 384.0 L258.0 382.0 L296.0 384.0"/><path class="bones-line" data-b="line-neck" d="M232.0 362.0 L218.0 384.0"/><path class="bones-line" data-b="line-arm" d="M218.0 384.0 L258.0 382.0 L296.0 384.0"/><path class="bones-line" data-b="line-torso" d="M218.0 384.0 L182.0 432.0 L232.0 446.0 L195.0 480.0"/><circle class="bones-joint" data-j="head" cx="232.0" cy="362.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="218.0" cy="384.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="258.0" cy="382.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="296.0" cy="384.0" r="6"/><circle class="bones-joint" data-j="hip" cx="182.0" cy="432.0" r="7"/><circle class="bones-joint" data-j="knee" cx="232.0" cy="446.0" r="7"/><circle class="bones-joint" data-j="ankle" cx="195.0" cy="480.0" r="6"/></svg></div><div class="tile-body"><h3>Squats</h3><p class="tile-amount">60 <small>a day</small></p></div></li>
+          <li class="tile in-view"><div class="tile-view"><svg class="" data-rest="0" data-pose="plank" viewBox="0 270 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="302.0" cy="390.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M282.0 404.0 L178.6 440.7 L106.0 466.4 L62.0 482.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M282.0 404.0 L282.0 470.0 L332.0 478.0"/><path class="bones-line" data-b="line-neck" d="M302.0 390.0 L282.0 404.0"/><path class="bones-line" data-b="line-arm" d="M282.0 404.0 L282.0 470.0 L332.0 478.0"/><path class="bones-line" data-b="line-torso" d="M282.0 404.0 L178.6 440.7 L106.0 466.4 L62.0 482.0"/><circle class="bones-joint" data-j="head" cx="302.0" cy="390.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="282.0" cy="404.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="282.0" cy="470.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="332.0" cy="478.0" r="6"/><circle class="bones-joint" data-j="hip" cx="178.6" cy="440.7" r="7"/><circle class="bones-joint" data-j="knee" cx="106.0" cy="466.4" r="7"/><circle class="bones-joint" data-j="ankle" cx="62.0" cy="482.0" r="6"/></svg></div><div class="tile-body"><h3>Plank</h3><p class="tile-amount">2:00 <small>a day</small></p></div></li>
         </ul>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="fair-title">
-      <div class="wrap">
-        <h2 id="fair-title">Fair by design</h2>
-        <ul class="fair" role="list">
-          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Whether you finish depends only on your own performance</span></li>
-          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Finish and you always get at least your entry back</span></li>
-          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Adults 18+ in Austria only, ID check before your first entry</span></li>
-          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every result can be reviewed by a human</span></li>
-          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ill or injured? Withdraw with a doctor's note and get your entry refunded</span></li>
-          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No top-ups, no deposits – money only moves for a challenge you join</span></li>
-          <li class="fair-wide"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Holdout's fee is 12% of the pool. It comes only from the entries of those who didn't finish and never exceeds them. If everyone finishes, there's no fee. Shown before you pay</span></li>
+    <section class="section fair" aria-labelledby="fair-title">
+      <div class="wrap fair-grid">
+        <div class="fair-side">
+          <h2 class="section-title" id="fair-title">Fair by design</h2>
+          <p class="fair-promise">Finish and you always get at least your entry back.</p>
+        </div>
+        <ul class="fair-list" role="list">
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Whether you finish depends only on your own performance</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Holdout's fee is 12% of the pool. It comes only from the entries of those who didn't finish and never exceeds them. If everyone finishes, there's no fee. Shown before you pay</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Adults 18+ in Austria only, ID check before your first entry</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every result can be reviewed by a human</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ill or injured? Withdraw with a doctor's note and get your entry refunded</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No top-ups, no deposits – money only moves for a challenge you join</span></li>
         </ul>
       </div>
     </section>
 
     <section class="section" aria-labelledby="faq-title">
-      <div class="wrap">
-        <h2 id="faq-title">FAQ</h2>
+      <div class="wrap faq-grid">
+        <div class="faq-side"><h2 class="section-title" id="faq-title">FAQ</h2></div>
         <div class="faq">
           <details>
-            <summary>When does it launch?</summary>
+            <summary>When does it launch?<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></summary>
             <p>We're in development and will launch in Austria soon.</p>
           </details>
           <details>
-            <summary>Who can join?</summary>
+            <summary>Who can join?<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></summary>
             <p>Adults aged 18 or over who live in Austria.</p>
           </details>
           <details>
-            <summary>Is my video uploaded?</summary>
+            <summary>Is my video uploaded?<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></summary>
             <p>Reps are counted on your phone, and by default no video leaves it. A short clip is uploaded only if you report a miscount or opt in to help improve counting.</p>
           </details>
           <details>
-            <summary>What happens if I don't finish?</summary>
+            <summary>What happens if I don't finish?<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></summary>
             <p>You lose that entry. Holdout's fee comes out of the entries of those who didn't finish, and the rest is shared among those who finished.</p>
           </details>
           <details>
-            <summary>Can I change my mind after joining?</summary>
+            <summary>Can I change my mind after joining?<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></summary>
             <p>Until joining closes, you can leave for free and get your entry back in full. After that, you can only withdraw if you're ill or injured, with a doctor's note.</p>
           </details>
           <details>
-            <summary>What if a rep is counted wrong?</summary>
+            <summary>What if a rep is counted wrong?<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></summary>
             <p>The automatic count can be wrong. Report it in the app up to 24 hours after the challenge ends, and a human reviews it within 48 hours.</p>
           </details>
           <details>
-            <summary>How are payouts made?</summary>
+            <summary>How are payouts made?<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></summary>
             <p>Through our payment provider to a bank account in your own name.</p>
           </details>
         </div>
       </div>
     </section>
 
-    <section class="section closing" aria-labelledby="closing-title">
+    <section class="finale" aria-labelledby="closing-title">
       <div class="wrap">
-        <h2 id="closing-title">Want to hear when it launches?</h2>
-        <p>Send us an email and we'll let you know when Holdout opens in Austria.</p>
-        <a class="button" href="mailto:moritz@rast.at?subject=Holdout%20launch">Get notified</a>
+        <p class="finale-count" aria-hidden="true">21/21</p>
+        <h2 id="closing-title">You finished the page.</h2>
+        <div class="finale-chain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="finale-text">The app comes next. Send us an email and we'll let you know when Holdout opens in Austria.</p>
+        <a class="button button-ink" href="mailto:moritz@rast.at?subject=Holdout%20launch">Get notified</a>
+        <p class="note">Opens your email app. Or write to <a href="mailto:moritz@rast.at?subject=Holdout%20launch">moritz@rast.at</a>.</p>
       </div>
     </section>
   </main>
