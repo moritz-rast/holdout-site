@@ -1802,6 +1802,15 @@ svg {
 }
 
 @media (forced-colors: active) {
+  .button,
+  .phone,
+  .tag,
+  .step,
+  .tile,
+  .ledger-card {
+    border: 1px solid CanvasText;
+  }
+
   .chain i,
   .progress-bar i,
   .pool-people i,
