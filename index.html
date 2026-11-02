@@ -3,9 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F2EE">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0D1530">
+  <meta name="format-detection" content="telephone=no">
   <title>Holdout – a 21-day home fitness challenge app</title>
   <meta name="description" content="Holdout is a home fitness challenge app in development. Join a 21-day challenge with an entry you choose and do your daily workout in front of your phone camera. Coming soon in Austria.">
+  <link rel="canonical" href="https://moritz-rast.github.io/holdout-site/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Holdout">
+  <meta property="og:title" content="Holdout – a 21-day home fitness challenge app">
+  <meta property="og:description" content="Join a 21-day challenge with an entry you choose and do your daily workout in front of your phone camera. Coming soon in Austria.">
+  <meta property="og:url" content="https://moritz-rast.github.io/holdout-site/">
+  <meta property="og:image" content="https://moritz-rast.github.io/holdout-site/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Holdout. Put something on the line. Show up for 21 days.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -24,8 +42,12 @@
       <div class="wrap">
         <div class="hero-copy">
           <h1 id="hero-title">Put something on the line. Show up for 21 days.</h1>
-          <p class="lead">Holdout is a home fitness challenge app. Join a 21-day challenge with an entry you choose, do your daily workout in front of your phone camera, and finish to get your entry back plus a share of the pool.</p>
-          <a class="button" href="mailto:moritz@rast.at?subject=Holdout%20launch">Get notified</a>
+          <p class="lead">Holdout is a home fitness challenge app. Join a 21-day challenge with an entry you choose, do your daily workout in front of your phone camera, and finish to get your entry back, plus a share of what remains from those who didn't.</p>
+          <div class="action">
+            <a class="button" href="mailto:moritz@rast.at?subject=Holdout%20launch">Get notified</a>
+            <p class="action-note">Opens your email app. Or write to <a href="mailto:moritz@rast.at?subject=Holdout%20launch">moritz@rast.at</a>.</p>
+          </div>
+          <p class="status-note">The app isn't available yet, and this website doesn't take payments.</p>
         </div>
 
         <div class="phone" role="img" aria-label="Illustration of the Holdout app on a phone: day 12 of 21, push-ups 40 of 40 done, with a check mark and a progress bar.">
@@ -50,11 +72,11 @@
     <section class="section" aria-labelledby="how-title">
       <div class="wrap">
         <h2 id="how-title">How it works</h2>
-        <ol class="grid-3">
+        <ol class="grid-3" role="list">
           <li class="card">
             <span class="step-number">Step 1</span>
             <h3>Choose</h3>
-            <p>Choose a challenge and an entry (€25–€100).</p>
+            <p>Pick a challenge and an entry, from €25.</p>
           </li>
           <li class="card">
             <span class="step-number">Step 2</span>
@@ -64,17 +86,58 @@
           <li class="card">
             <span class="step-number">Step 3</span>
             <h3>Finish</h3>
-            <p>Finish all 21 days and get at least your entry back, plus a share of the entries of those who didn't finish.</p>
+            <p>Finish all 21 days and get at least your entry back, plus a share of what remains from the entries of those who didn't finish.</p>
           </li>
         </ol>
+        <p class="callout">Miss a day and you lose your entry, unless you withdraw with a doctor's note.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="example-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="example-title">An example pool</h2>
+          <p>Imagine 50 people join with €100 each, so the pool is €5,000. 30 finish and 20 don't.</p>
+        </div>
+        <div class="example">
+          <div class="people" aria-hidden="true">
+            <span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span><span class="person is-done"></span>
+            <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
+          </div>
+          <dl class="ledger">
+            <div>
+              <dt>Entries of the 20 who didn't finish</dt>
+              <dd>€2,000.00</dd>
+            </div>
+            <div>
+              <dt>Holdout's fee, 12% of the €5,000 pool</dt>
+              <dd>−€600.00</dd>
+            </div>
+            <div>
+              <dt>Shared among the 30 who finished</dt>
+              <dd>€1,400.00</dd>
+            </div>
+            <div class="ledger-result">
+              <dt>Each person who finished gets</dt>
+              <dd>€146.66</dd>
+            </div>
+            <div class="ledger-result">
+              <dt>Each person who didn't finish gets</dt>
+              <dd>€0</dd>
+            </div>
+          </dl>
+        </div>
+        <p class="fine-print">€146.66 is the €100 entry plus a €46.66 share, rounded down to the cent. This is an illustration, not a forecast. What you get depends on who finishes.</p>
       </div>
     </section>
 
     <section class="section" aria-labelledby="challenges-title">
       <div class="wrap">
-        <h2 id="challenges-title">The challenges</h2>
-        <p class="section-note">Split into as many sets as you like. Every day for 21 days.</p>
-        <ul class="grid-3">
+        <div class="section-head">
+          <h2 id="challenges-title">The challenges</h2>
+          <p>Each challenge has its own daily target, shown before you join. Split it into as many sets as you like. Some examples:</p>
+        </div>
+        <ul class="grid-3" role="list">
           <li class="card">
             <h3>Push-ups</h3>
             <p class="amount">40 <small>a day</small></p>
@@ -94,14 +157,14 @@
     <section class="section" aria-labelledby="fair-title">
       <div class="wrap">
         <h2 id="fair-title">Fair by design</h2>
-        <ul class="fair">
-          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Results depend only on your own performance</span></li>
+        <ul class="fair" role="list">
+          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Whether you finish depends only on your own performance</span></li>
           <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Finish and you always get at least your entry back</span></li>
-          <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Holdout keeps 12% of the pool – shown before you pay</span></li>
           <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Adults 18+ in Austria only, ID check before your first entry</span></li>
           <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every result can be reviewed by a human</span></li>
           <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ill or injured? Withdraw with a doctor's note and get your entry refunded</span></li>
           <li><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No top-ups, no deposits – money only moves for a challenge you join</span></li>
+          <li class="fair-wide"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 11.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Holdout's fee is 12% of the pool. It comes only from the entries of those who didn't finish and never exceeds them. If everyone finishes, there's no fee. Shown before you pay</span></li>
         </ul>
       </div>
     </section>
@@ -120,17 +183,33 @@
           </details>
           <details>
             <summary>Is my video uploaded?</summary>
-            <p>Reps are counted on your phone. We don't upload raw video.</p>
+            <p>Reps are counted on your phone, and by default no video leaves it. A short clip is uploaded only if you report a miscount or opt in to help improve counting.</p>
           </details>
           <details>
             <summary>What happens if I don't finish?</summary>
-            <p>You lose that entry. It's shared among those who finished, minus Holdout's 12%.</p>
+            <p>You lose that entry. Holdout's fee comes out of the entries of those who didn't finish, and the rest is shared among those who finished.</p>
+          </details>
+          <details>
+            <summary>Can I change my mind after joining?</summary>
+            <p>Until joining closes, you can leave for free and get your entry back in full. After that, you can only withdraw if you're ill or injured, with a doctor's note.</p>
+          </details>
+          <details>
+            <summary>What if a rep is counted wrong?</summary>
+            <p>The automatic count can be wrong. Report it in the app up to 24 hours after the challenge ends, and a human reviews it within 48 hours.</p>
           </details>
           <details>
             <summary>How are payouts made?</summary>
             <p>Through our payment provider to a bank account in your own name.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <section class="section closing" aria-labelledby="closing-title">
+      <div class="wrap">
+        <h2 id="closing-title">Want to hear when it launches?</h2>
+        <p>Send us an email and we'll let you know when Holdout opens in Austria.</p>
+        <a class="button" href="mailto:moritz@rast.at?subject=Holdout%20launch">Get notified</a>
       </div>
     </section>
   </main>
