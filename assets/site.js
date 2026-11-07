@@ -83,12 +83,11 @@
     });
   };
 
-  // Loops reps while the drawing is on screen and not paused. Stops off screen.
+  // Loops reps while the drawing is on screen, and stops off screen.
   var loopReps = function (svg, repMs, onRep, resting) {
     var pose = poses[svg.getAttribute("data-pose")];
     var rest = svg.getAttribute("data-rest") === "1" ? 1 : 0;
     var seen = false;
-    var paused = false;
     var frameId = null;
     var start = null;
     var doneReps = 0;
@@ -113,7 +112,7 @@
       frameId = window.requestAnimationFrame(frame);
     };
     var sync = function () {
-      var run = seen && !paused;
+      var run = seen;
       if (run && frameId === null) {
         start = null;
         frameId = window.requestAnimationFrame(frame);
@@ -129,31 +128,6 @@
         sync();
       }, { threshold: 0.3 }).observe(svg);
     }
-    return function (value) {
-      paused = value;
-      sync();
-    };
-  };
-
-  // One pause button per group of animations (WCAG 2.2.2).
-  var pauseButton = function (after, controls) {
-    var button = document.createElement("button");
-    button.type = "button";
-    button.className = "motion-toggle";
-    var paused = false;
-    var label = function () {
-      button.textContent = paused ? "Play animation" : "Pause animation";
-      button.setAttribute("aria-pressed", paused ? "true" : "false");
-    };
-    button.addEventListener("click", function () {
-      paused = !paused;
-      controls.forEach(function (control) {
-        control(paused);
-      });
-      label();
-    });
-    label();
-    after.appendChild(button);
   };
 
   if (!calm) {
@@ -175,7 +149,7 @@
       var hideCue;
       // A cycle is 8 counted reps up to 40, then a short rest, then it starts again.
       var cycle = target - first + holdReps;
-      var stopWorkout = loopReps(body, 1300, function (rep) {
+      loopReps(body, 1300, function (rep) {
         var inCycle = rep % cycle;
         if (inCycle === 0) {
           showCount(first);
@@ -196,31 +170,19 @@
         return rep % cycle >= target - first;
       });
       showCount(first);
-      var workoutText = document.querySelector(".step-2 .step-text");
-      if (workoutText) {
-        pauseButton(workoutText, [stopWorkout]);
-      }
     }
 
-    var tileControls = [];
     document.querySelectorAll(".tile svg[data-pose]").forEach(function (svg) {
-      tileControls.push(loopReps(svg, svg.getAttribute("data-pose") === "plank" ? 2200 : 1600));
+      loopReps(svg, svg.getAttribute("data-pose") === "plank" ? 2200 : 1600);
     });
-    var tiles = document.querySelector(".tiles");
-    if (tiles && tileControls.length) {
-      var holder = document.createElement("div");
-      holder.className = "motion-row";
-      tiles.parentNode.insertBefore(holder, tiles.nextSibling);
-      pauseButton(holder, tileControls);
-    }
   }
 
-  /* Example: what a finisher gets back. Same rule as the payout code, for a group of 10:
+  /* Example: what a finisher gets back. Same rule as the payout code, for a pool of 100:
      fee = min(12% of all entries, entries of those who didn't finish),
      each finisher's share is rounded down to the cent. */
   var pool = document.querySelector("[data-pool]");
   if (pool) {
-    var size = 10;
+    var size = 100;
     var slider = pool.querySelector("[data-missed]");
     var people = Array.prototype.slice.call(pool.querySelectorAll(".pool-people i"));
     var out = function (name) {
@@ -246,14 +208,16 @@
       if (missed === 0) {
         out("split").textContent = "Everyone finished, so everyone gets their " + money(entry, true) + " entry back.";
       } else if (share === 0) {
-        out("split").textContent = "Your " + money(entry, true) + " entry back. With this few dropping out, there's no share.";
+        out("split").textContent = "Your " + money(entry, true) + " entry back. When this few drop out, there's no share.";
       } else {
         out("split").textContent = "Your " + money(entry, true) + " entry plus a " + money(share) + " share.";
       }
-      slider.setAttribute("aria-valuetext", missed + " of 10 people don't finish");
+      slider.setAttribute("aria-valuetext", missed + " of 100 people don't finish");
       slider.style.setProperty("--fill", (missed / slider.max * 100) + "%");
       people.forEach(function (person, i) {
-        person.classList.toggle("in", i < finished);
+        if (i > 0) {
+          person.classList.toggle("in", i < finished);
+        }
       });
     };
 

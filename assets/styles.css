@@ -223,7 +223,7 @@ svg {
   --phone: min(286px, 76vw);
   display: grid;
   gap: 48px;
-  padding-block: clamp(24px, 4vw, 56px) clamp(96px, 12vw, 168px);
+  padding-block: clamp(16px, 2.5vw, 32px) clamp(80px, 9vw, 128px);
 }
 
 .hero-phone {
@@ -242,7 +242,7 @@ svg {
 
 .hero-copy {
   display: grid;
-  align-content: center;
+  align-content: start;
   justify-items: start;
   gap: 32px;
 }
@@ -948,7 +948,7 @@ svg {
 /* Sections */
 
 .section {
-  padding-block: clamp(104px, 13vw, 184px);
+  padding-block: clamp(88px, 11vw, 152px);
 }
 
 .section-title {
@@ -1033,12 +1033,6 @@ svg {
   color: #121212;
 }
 
-.screens-note {
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
 /* Miss a day */
 
 .miss h2 {
@@ -1082,20 +1076,51 @@ svg {
 
 .pool-people {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: clamp(6px, 1vw, 12px);
-  max-width: 440px;
-  margin-top: 20px;
+  grid-template-columns: repeat(20, 1fr);
+  gap: clamp(3px, 0.45vw, 6px);
 }
 
 .pool-people i {
   aspect-ratio: 1;
-  border-radius: 28%;
+  border-radius: 30%;
   background: var(--sunk);
   transition: background-color 160ms ease;
 }
 
 .pool-people .in {
+  background: var(--ink);
+}
+
+.pool-people .you {
+  background: var(--orange);
+}
+
+.pool-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 14px 0 32px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.pool-key span::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 7px;
+  border-radius: 3px;
+  background: var(--sunk);
+  vertical-align: -1px;
+}
+
+.pool-key .key-you::before {
+  background: var(--orange);
+}
+
+.pool-key .key-in::before {
   background: var(--ink);
 }
 
@@ -1249,10 +1274,11 @@ svg {
 }
 
 .result-other {
-  margin-top: 28px;
-  padding-top: 20px;
+  margin-top: 24px;
+  padding-top: 18px;
   border-top: 1px solid var(--line);
   color: var(--muted);
+  font-size: 0.9375rem;
   font-weight: 500;
 }
 
@@ -1261,30 +1287,6 @@ svg {
   margin-top: 40px;
   color: var(--muted);
   font-size: 0.9375rem;
-}
-
-/* Pause control for the looping animations */
-
-.motion-toggle {
-  min-height: 44px;
-  margin-top: 24px;
-  padding: 0 20px;
-  border: 1.5px solid currentColor;
-  border-radius: 999px;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.motion-toggle:hover {
-  background: color-mix(in srgb, currentColor 12%, transparent);
-}
-
-.motion-row .motion-toggle {
-  color: var(--muted);
 }
 
 /* Challenges */
@@ -1326,20 +1328,9 @@ svg {
   letter-spacing: -0.03em;
 }
 
-.tile-amount {
-  flex: none;
-  font-size: 2.25rem;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
-}
-
-.tile-amount small {
+.tile-how {
   color: var(--muted);
-  font-size: 0.9375rem;
   font-weight: 500;
-  letter-spacing: 0;
 }
 
 /* Fair by design */
@@ -1561,13 +1552,17 @@ svg {
 
 @media (min-width: 900px) {
   .hero-grid {
-    --phone: clamp(264px, 25vw, 330px);
+    --phone: clamp(264px, 24vw, 310px);
     grid-template-columns: minmax(0, 1fr) auto;
     gap: clamp(32px, 5vw, 72px);
   }
 
+  .hero-copy {
+    padding-top: clamp(8px, 1.5vw, 24px);
+  }
+
   .step {
-    --phone: min(280px, calc((100vh - 150px) * 0.462));
+    --phone: min(280px, calc((100vh - 230px) * 0.462));
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 64px;
     padding: clamp(40px, 4.5vw, 56px) clamp(48px, 7vw, 104px);
@@ -1589,6 +1584,23 @@ svg {
   .fair-side,
   .faq-side {
     position: sticky;
+    top: 56px;
+  }
+}
+
+/* Panels stack on top of each other while scrolling, if the window is tall enough. */
+@media (min-width: 900px) and (min-height: 640px) {
+  .step {
+    position: sticky;
+    top: 24px;
+    box-shadow: 0 -18px 48px -24px var(--shadow);
+  }
+
+  .step-2 {
+    top: 40px;
+  }
+
+  .step-3 {
     top: 56px;
   }
 }

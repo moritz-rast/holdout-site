@@ -25,8 +25,8 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/styles.css?v=3">
-  <script src="assets/site.js?v=3" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=4">
+  <script src="assets/site.js?v=4" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -76,7 +76,7 @@
               <h3>Choose</h3>
               <p>Pick a challenge and an entry, from €25.</p>
             </div>
-            <div class="phone" role="img" aria-label="App screen with example numbers: a 14-day push-up challenge at 40 a day, with entry options of 25, 50 and 100 euros and 100 euros selected. Finishing returns the entry plus a share. Missing a day sends the entry to the finishers."><div class="screen"><div class="scr">
+            <div class="phone" role="img" aria-label="App screen with example numbers: a 14-day push-up challenge at 40 a day, with entry options of 25, 50 and 100 euros and 100 euros selected. Finishing returns the entry plus a share. Missing a day loses the entry."><div class="screen"><div class="scr">
   <div class="s-top"><span class="s-logo">holdout<i>.</i></span><span class="s-badge">Starts in 9 days</span></div>
   <p class="s-hello">40 a day · 14 days</p>
   <p class="s-title">Push-up challenge</p>
@@ -88,7 +88,7 @@
   <div class="s-choices"><span>€25</span><span>€50</span><span class="on">€100</span><span>Other</span></div>
   <div class="s-card">
     <div class="s-outcome"><span class="s-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Finish every day<b class="s-ok">€100 + share</b></div>
-    <div class="s-outcome"><span class="s-mark off"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>Miss a day<b class="s-muted">€100 to finishers</b></div>
+    <div class="s-outcome"><span class="s-mark off"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>Miss a day<b class="s-muted">You lose €100</b></div>
   </div>
   <p class="s-rule">Ill or injured? Withdraw with a doctor's note and get your entry back.</p>
   <div class="s-cta">Join with €100</div>
@@ -136,7 +136,6 @@
 </div></div></div>
           </li>
         </ol>
-        <p class="screens-note">Screens from the app in development, with example numbers.</p>
       </div>
     </section>
 
@@ -163,30 +162,30 @@
               </div>
             </fieldset>
             <div>
-              <label class="control-label" for="missed">Out of every 10 people, <span data-out="missed">4</span> don't finish</label>
-              <input class="slider" id="missed" type="range" min="0" max="6" step="1" value="4" data-missed>
-              <div class="pool-people" aria-hidden="true"><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i></i><i></i><i></i><i></i></div>
+              <label class="control-label" for="missed">Of 100 people, <span data-out="missed">40</span> don't finish</label>
+              <input class="slider" id="missed" type="range" min="0" max="60" step="1" value="40" data-missed>
             </div>
           </div>
           <div class="ledger-card">
+            <div class="pool-people" aria-hidden="true"><i class="you"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i class="in"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <p class="pool-key" aria-hidden="true"><span class="key-you">You</span><span class="key-in">Finished</span><span class="key-out">Didn't finish</span></p>
             <p class="result-label">If you finish, you get back</p>
             <p class="result-amount" data-out="each" aria-live="polite">€146.66</p>
             <p class="result-split" data-out="split">Your €100 entry plus a €46.66 share.</p>
-            <p class="result-other">If you don't finish, you get €0.</p>
+            <p class="result-other">An example, not a forecast. If you don't finish, you get €0.</p>
           </div>
         </div>
-        <p class="fine-print">An example, not a forecast. What you get depends on how many people finish, and shares are rounded down to the cent.</p>
       </div>
     </section>
 
     <section class="section" aria-labelledby="challenges-title">
       <div class="wrap">
         <h2 class="section-title" id="challenges-title">The challenges</h2>
-        <p class="section-lead">Each challenge has its own daily target, shown before you join. Split it into as many sets as you like. Some examples:</p>
+        <p class="section-lead">Every challenge sets its own target and length, and you see both before you join. Split your reps into as many sets as you like.</p>
         <ul class="tiles" role="list">
-          <li class="tile"><div class="tile-view"><svg class="" data-rest="0" data-pose="pushup" viewBox="0 270 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="296.0" cy="374.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M276.0 392.0 L175.4 434.3 L104.8 464.0 L62.0 482.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M276.0 392.0 L274.0 437.0 L272.0 482.0"/><path class="bones-line" data-b="line-neck" d="M296.0 374.0 L276.0 392.0"/><path class="bones-line" data-b="line-arm" d="M276.0 392.0 L274.0 437.0 L272.0 482.0"/><path class="bones-line" data-b="line-torso" d="M276.0 392.0 L175.4 434.3 L104.8 464.0 L62.0 482.0"/><circle class="bones-joint" data-j="head" cx="296.0" cy="374.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="276.0" cy="392.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="274.0" cy="437.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="272.0" cy="482.0" r="6"/><circle class="bones-joint" data-j="hip" cx="175.4" cy="434.3" r="7"/><circle class="bones-joint" data-j="knee" cx="104.8" cy="464.0" r="7"/><circle class="bones-joint" data-j="ankle" cx="62.0" cy="482.0" r="6"/></svg></div><div class="tile-body"><h3>Push-ups</h3><p class="tile-amount">40 <small>a day</small></p></div></li>
-          <li class="tile"><div class="tile-view"><svg class="" data-rest="1" data-pose="squat" viewBox="0 262 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="232.0" cy="362.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M218.0 384.0 L182.0 432.0 L232.0 446.0 L195.0 480.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M218.0 384.0 L258.0 382.0 L296.0 384.0"/><path class="bones-line" data-b="line-neck" d="M232.0 362.0 L218.0 384.0"/><path class="bones-line" data-b="line-arm" d="M218.0 384.0 L258.0 382.0 L296.0 384.0"/><path class="bones-line" data-b="line-torso" d="M218.0 384.0 L182.0 432.0 L232.0 446.0 L195.0 480.0"/><circle class="bones-joint" data-j="head" cx="232.0" cy="362.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="218.0" cy="384.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="258.0" cy="382.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="296.0" cy="384.0" r="6"/><circle class="bones-joint" data-j="hip" cx="182.0" cy="432.0" r="7"/><circle class="bones-joint" data-j="knee" cx="232.0" cy="446.0" r="7"/><circle class="bones-joint" data-j="ankle" cx="195.0" cy="480.0" r="6"/></svg></div><div class="tile-body"><h3>Squats</h3><p class="tile-amount">60 <small>a day</small></p></div></li>
-          <li class="tile"><div class="tile-view"><svg class="" data-rest="0" data-pose="plank" viewBox="0 270 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="302.0" cy="390.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M282.0 404.0 L178.6 440.7 L106.0 466.4 L62.0 482.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M282.0 404.0 L282.0 470.0 L332.0 478.0"/><path class="bones-line" data-b="line-neck" d="M302.0 390.0 L282.0 404.0"/><path class="bones-line" data-b="line-arm" d="M282.0 404.0 L282.0 470.0 L332.0 478.0"/><path class="bones-line" data-b="line-torso" d="M282.0 404.0 L178.6 440.7 L106.0 466.4 L62.0 482.0"/><circle class="bones-joint" data-j="head" cx="302.0" cy="390.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="282.0" cy="404.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="282.0" cy="470.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="332.0" cy="478.0" r="6"/><circle class="bones-joint" data-j="hip" cx="178.6" cy="440.7" r="7"/><circle class="bones-joint" data-j="knee" cx="106.0" cy="466.4" r="7"/><circle class="bones-joint" data-j="ankle" cx="62.0" cy="482.0" r="6"/></svg></div><div class="tile-body"><h3>Plank</h3><p class="tile-amount">2:00 <small>a day</small></p></div></li>
+          <li class="tile"><div class="tile-view"><svg class="" data-rest="0" data-pose="pushup" viewBox="0 270 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="296.0" cy="374.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M276.0 392.0 L175.4 434.3 L104.8 464.0 L62.0 482.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M276.0 392.0 L274.0 437.0 L272.0 482.0"/><path class="bones-line" data-b="line-neck" d="M296.0 374.0 L276.0 392.0"/><path class="bones-line" data-b="line-arm" d="M276.0 392.0 L274.0 437.0 L272.0 482.0"/><path class="bones-line" data-b="line-torso" d="M276.0 392.0 L175.4 434.3 L104.8 464.0 L62.0 482.0"/><circle class="bones-joint" data-j="head" cx="296.0" cy="374.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="276.0" cy="392.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="274.0" cy="437.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="272.0" cy="482.0" r="6"/><circle class="bones-joint" data-j="hip" cx="175.4" cy="434.3" r="7"/><circle class="bones-joint" data-j="knee" cx="104.8" cy="464.0" r="7"/><circle class="bones-joint" data-j="ankle" cx="62.0" cy="482.0" r="6"/></svg></div><div class="tile-body"><h3>Push-ups</h3><p class="tile-how">Counted rep by rep</p></div></li>
+          <li class="tile"><div class="tile-view"><svg class="" data-rest="1" data-pose="squat" viewBox="0 262 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="232.0" cy="362.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M218.0 384.0 L182.0 432.0 L232.0 446.0 L195.0 480.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M218.0 384.0 L258.0 382.0 L296.0 384.0"/><path class="bones-line" data-b="line-neck" d="M232.0 362.0 L218.0 384.0"/><path class="bones-line" data-b="line-arm" d="M218.0 384.0 L258.0 382.0 L296.0 384.0"/><path class="bones-line" data-b="line-torso" d="M218.0 384.0 L182.0 432.0 L232.0 446.0 L195.0 480.0"/><circle class="bones-joint" data-j="head" cx="232.0" cy="362.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="218.0" cy="384.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="258.0" cy="382.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="296.0" cy="384.0" r="6"/><circle class="bones-joint" data-j="hip" cx="182.0" cy="432.0" r="7"/><circle class="bones-joint" data-j="knee" cx="232.0" cy="446.0" r="7"/><circle class="bones-joint" data-j="ankle" cx="195.0" cy="480.0" r="6"/></svg></div><div class="tile-body"><h3>Squats</h3><p class="tile-how">Counted rep by rep</p></div></li>
+          <li class="tile"><div class="tile-view"><svg class="" data-rest="0" data-pose="plank" viewBox="0 270 390 240" aria-hidden="true"><circle class="bones-head" data-j="head" cx="302.0" cy="390.0" r="20"/><path class="bones-flesh" data-b="flesh-torso" stroke-width="26" d="M282.0 404.0 L178.6 440.7 L106.0 466.4 L62.0 482.0"/><path class="bones-flesh" data-b="flesh-arm" stroke-width="15" d="M282.0 404.0 L282.0 470.0 L332.0 478.0"/><path class="bones-line" data-b="line-neck" d="M302.0 390.0 L282.0 404.0"/><path class="bones-line" data-b="line-arm" d="M282.0 404.0 L282.0 470.0 L332.0 478.0"/><path class="bones-line" data-b="line-torso" d="M282.0 404.0 L178.6 440.7 L106.0 466.4 L62.0 482.0"/><circle class="bones-joint" data-j="head" cx="302.0" cy="390.0" r="6"/><circle class="bones-joint" data-j="shoulder" cx="282.0" cy="404.0" r="7"/><circle class="bones-joint" data-j="elbow" cx="282.0" cy="470.0" r="7"/><circle class="bones-joint" data-j="wrist" cx="332.0" cy="478.0" r="6"/><circle class="bones-joint" data-j="hip" cx="178.6" cy="440.7" r="7"/><circle class="bones-joint" data-j="knee" cx="106.0" cy="466.4" r="7"/><circle class="bones-joint" data-j="ankle" cx="62.0" cy="482.0" r="6"/></svg></div><div class="tile-body"><h3>Plank</h3><p class="tile-how">Timed while you hold</p></div></li>
         </ul>
       </div>
     </section>
