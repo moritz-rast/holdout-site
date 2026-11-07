@@ -223,7 +223,7 @@ svg {
   --phone: min(286px, 76vw);
   display: grid;
   gap: 48px;
-  padding-block: clamp(16px, 3vw, 40px) 56px;
+  padding-block: clamp(24px, 4vw, 56px) clamp(96px, 12vw, 168px);
 }
 
 .hero-phone {
@@ -266,11 +266,7 @@ svg {
   font-size: 0.9375rem;
 }
 
-.hero-chain {
-  padding-bottom: clamp(56px, 8vw, 104px);
-}
-
-/* The 21-day chain */
+/* Day chain */
 
 .chain {
   display: grid;
@@ -295,28 +291,6 @@ svg {
 .chain .now {
   background: var(--orange);
   transform: scale(1.04);
-}
-
-.chain-caption {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 4px 24px;
-  margin-top: 14px;
-  color: var(--muted);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  visibility: hidden;
-}
-
-.js .chain-caption {
-  visibility: visible;
-}
-
-.chain-caption b {
-  color: var(--ink);
-  font-weight: 800;
 }
 
 /* Scroll progress: the page is the challenge */
@@ -357,21 +331,6 @@ svg {
 
 .progress-bar .now {
   background: var(--orange);
-}
-
-.progress-day {
-  display: none;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: var(--chip);
-  color: var(--ink);
-  box-shadow: 0 8px 24px -10px var(--shadow);
-  font-size: 0.875rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
 }
 
 /* Phone */
@@ -1024,7 +983,7 @@ svg {
 /* Sections */
 
 .section {
-  padding-block: clamp(72px, 10vw, 136px);
+  padding-block: clamp(104px, 13vw, 184px);
 }
 
 .section-title {
@@ -1035,7 +994,7 @@ svg {
 
 .section-lead {
   max-width: 34em;
-  margin-top: 18px;
+  margin-top: 24px;
   color: var(--muted);
   font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
 }
@@ -1047,12 +1006,12 @@ svg {
 }
 
 .how-title {
-  margin-bottom: clamp(32px, 5vw, 56px);
+  margin-bottom: clamp(40px, 6vw, 72px);
 }
 
 .steps {
   display: grid;
-  gap: 16px;
+  gap: clamp(24px, 3vw, 40px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1062,8 +1021,8 @@ svg {
   --phone: min(270px, 74vw);
   display: grid;
   justify-items: center;
-  gap: 40px;
-  padding: clamp(28px, 5vw, 64px);
+  gap: 48px;
+  padding: clamp(32px, 6vw, 72px);
   overflow: hidden;
   border-radius: clamp(28px, 4vw, 44px);
   background: var(--card);
@@ -1110,7 +1069,7 @@ svg {
 }
 
 .screens-note {
-  margin-top: 18px;
+  margin-top: 24px;
   color: var(--muted);
   font-size: 0.9375rem;
 }
@@ -1126,13 +1085,13 @@ svg {
 
 .miss p {
   max-width: 32em;
-  margin-top: 22px;
+  margin-top: 28px;
   color: var(--muted);
   font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
 }
 
 .miss-chain {
-  margin-top: clamp(32px, 5vw, 56px);
+  margin-top: clamp(40px, 6vw, 72px);
 }
 
 .miss-chain .gone {
@@ -1152,15 +1111,16 @@ svg {
 
 .pool-grid {
   display: grid;
-  gap: 48px;
-  margin-top: clamp(36px, 5vw, 64px);
+  gap: 56px;
+  margin-top: clamp(48px, 6vw, 80px);
 }
 
 .pool-people {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: clamp(5px, 0.8vw, 10px);
-  margin-bottom: 14px;
+  gap: clamp(6px, 1vw, 12px);
+  max-width: 440px;
+  margin-top: 20px;
 }
 
 .pool-people i {
@@ -1174,19 +1134,10 @@ svg {
   background: var(--ink);
 }
 
-.pool-key {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 20px;
-  color: var(--muted);
-  font-size: 0.9375rem;
-  font-weight: 500;
-}
-
 .controls {
   display: none;
-  gap: 26px;
-  margin-top: 32px;
+  gap: 40px;
+  align-content: start;
 }
 
 .js .controls {
@@ -1307,39 +1258,9 @@ svg {
 }
 
 .ledger-card {
-  padding: clamp(24px, 3vw, 36px);
+  padding: clamp(32px, 4vw, 48px);
   border-radius: clamp(24px, 3vw, 32px);
   background: var(--bg);
-}
-
-.ledger {
-  margin: 0;
-}
-
-.ledger div {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-  padding-block: 13px;
-  border-bottom: 1px solid var(--line);
-}
-
-.ledger dt {
-  color: var(--muted);
-}
-
-.ledger dd {
-  flex: none;
-  margin: 0;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-
-.result {
-  display: grid;
-  gap: 18px;
-  margin-top: 24px;
 }
 
 .result-label {
@@ -1348,7 +1269,7 @@ svg {
 }
 
 .result-amount {
-  display: block;
+  margin-top: 8px;
   font-size: clamp(3rem, 7.5vw, 5.25rem);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
@@ -1356,31 +1277,57 @@ svg {
   line-height: 1.05;
 }
 
-.result-other {
-  color: var(--muted);
+.result-split {
+  margin-top: 16px;
+  font-size: 1.125rem;
   font-weight: 600;
 }
 
-.pool-message {
-  min-height: 3.1em;
-  margin-top: 18px;
-  color: var(--success);
-  font-weight: 600;
+.result-other {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-weight: 500;
 }
 
 .fine-print {
   max-width: 48em;
-  margin-top: 28px;
+  margin-top: 40px;
   color: var(--muted);
   font-size: 0.9375rem;
+}
+
+/* Pause control for the looping animations */
+
+.motion-toggle {
+  min-height: 44px;
+  margin-top: 24px;
+  padding: 0 20px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.motion-toggle:hover {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.motion-row .motion-toggle {
+  color: var(--muted);
 }
 
 /* Challenges */
 
 .tiles {
   display: grid;
-  gap: 16px;
-  margin: clamp(36px, 5vw, 56px) 0 0;
+  gap: 24px;
+  margin: clamp(48px, 6vw, 72px) 0 0;
   padding: 0;
   list-style: none;
 }
@@ -1462,7 +1409,7 @@ svg {
   display: grid;
   grid-template-columns: 24px 1fr;
   gap: 14px;
-  padding-block: 18px;
+  padding-block: 22px;
   border-top: 1px solid var(--night-line);
   font-size: 1.125rem;
   line-height: 1.45;
@@ -1499,7 +1446,7 @@ svg {
   justify-content: space-between;
   gap: 16px;
   min-height: 44px;
-  padding-block: 20px;
+  padding-block: 24px;
   font-size: 1.1875rem;
   font-weight: 700;
   letter-spacing: -0.015em;
@@ -1543,16 +1490,8 @@ svg {
   padding-block: clamp(72px, 10vw, 128px);
 }
 
-.finale-count {
-  font-size: clamp(6rem, 27vw, 22rem);
-  font-weight: 900;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.07em;
-  line-height: 0.86;
-}
-
 .finale h2 {
-  margin-top: 24px;
+  margin-top: 0;
   font-size: clamp(2.25rem, 6vw, 4.5rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
@@ -1574,15 +1513,8 @@ svg {
 
 .finale-text {
   max-width: 30em;
-  margin-bottom: 28px;
   font-size: clamp(1.125rem, 1.8vw, 1.375rem);
   font-weight: 500;
-}
-
-.finale .note {
-  margin-top: 16px;
-  color: #121212;
-  font-size: 0.9375rem;
 }
 
 /* Footer */
@@ -1665,10 +1597,6 @@ svg {
 }
 
 @media (min-width: 720px) {
-  .progress-day {
-    display: block;
-  }
-
   .chain {
     grid-template-columns: repeat(21, 1fr);
     gap: clamp(4px, 0.7vw, 10px);
@@ -1687,16 +1615,16 @@ svg {
   }
 
   .step {
-    --phone: min(280px, calc((100vh - 130px) * 0.462));
+    --phone: min(280px, calc((100vh - 150px) * 0.462));
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 48px;
-    padding: clamp(32px, 4vw, 48px) clamp(40px, 6vw, 88px);
+    gap: 64px;
+    padding: clamp(40px, 4.5vw, 56px) clamp(48px, 7vw, 104px);
   }
 
   .pool-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(48px, 6vw, 88px);
-    align-items: start;
+    gap: clamp(56px, 7vw, 112px);
+    align-items: center;
   }
 
   .fair-grid,
@@ -1844,7 +1772,6 @@ svg {
   .skip,
   .button,
   .phone,
-  .hero-chain,
   .tile-view,
   .controls {
     display: none !important;

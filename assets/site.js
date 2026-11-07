@@ -7,60 +7,41 @@
 
   var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* The page is the challenge: scrolling moves through days 1 to 21. */
-  var heroBlocks = Array.prototype.slice.call(document.querySelectorAll(".hero-chain .chain i"));
-  var dayLabel = document.querySelector("[data-day]");
+  /* Scroll progress: a slim chain at the top fills as you read. */
+  var finale = document.querySelector(".finale");
   var hero = document.querySelector(".hero");
 
-  if (heroBlocks.length && hero) {
+  if (finale && hero) {
     var progress = document.createElement("div");
     var bar = document.createElement("div");
-    var chip = document.createElement("div");
     progress.className = "progress";
     progress.setAttribute("aria-hidden", "true");
     bar.className = "progress-bar";
-    chip.className = "progress-day";
     for (var d = 0; d < 21; d++) {
       bar.appendChild(document.createElement("i"));
     }
     progress.appendChild(bar);
-    progress.appendChild(chip);
     document.body.appendChild(progress);
 
     var barBlocks = Array.prototype.slice.call(bar.children);
-    heroBlocks.forEach(function (block, i) {
-      block.style.setProperty("--i", i);
-    });
-
-    var paint = function (blocks, day, finished) {
-      blocks.forEach(function (block, i) {
-        block.classList.toggle("on", i < day - 1 || finished);
-        block.classList.toggle("now", i === day - 1 && !finished);
-      });
-    };
-
-    var lastDay = 0;
+    var lastStep = 0;
     var queued = false;
     var update = function () {
       queued = false;
-      var finale = document.querySelector(".finale");
-      var finaleTop = finale.getBoundingClientRect().top;
-      var range = finaleTop + window.scrollY - window.innerHeight * 0.6;
+      var range = finale.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.6;
       var share = range > 0 ? window.scrollY / range : 0;
-      var day = Math.min(21, Math.max(1, Math.ceil(share * 21)));
+      var step = Math.min(21, Math.max(1, Math.ceil(share * 21)));
       var finished = share >= 1;
       progress.classList.toggle("show", hero.getBoundingClientRect().bottom < 40);
-      var key = finished ? 22 : day;
-      if (key === lastDay) {
+      var key = finished ? 22 : step;
+      if (key === lastStep) {
         return;
       }
-      lastDay = key;
-      paint(heroBlocks, day, finished);
-      paint(barBlocks, day, finished);
-      chip.textContent = finished ? "21 / 21" : "Day " + day + " of 21";
-      if (dayLabel) {
-        dayLabel.textContent = day;
-      }
+      lastStep = key;
+      barBlocks.forEach(function (block, i) {
+        block.classList.toggle("on", i < step - 1 || finished);
+        block.classList.toggle("now", i === step - 1 && !finished);
+      });
     };
     var request = function () {
       if (!queued) {
@@ -149,67 +130,77 @@
     });
   };
 
-  var whenSeen = function (el, onEnter, onLeave) {
-    if (!("IntersectionObserver" in window)) {
-      return;
-    }
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          onEnter();
-        } else if (onLeave) {
-          onLeave();
-        }
-      });
-    }, { threshold: 0.45 }).observe(el);
-  };
-
-  // Plays a short set of reps when it scrolls into view, then stops by itself.
-  var playReps = function (svg, reps, repMs, onRep, onStart, onEnd) {
+  // Loops reps while the drawing is on screen and not paused. Stops off screen.
+  var loopReps = function (svg, repMs, onRep, resting) {
     var pose = poses[svg.getAttribute("data-pose")];
     var rest = svg.getAttribute("data-rest") === "1" ? 1 : 0;
-    var running = false;
-    var seenAgain = true;
-    whenSeen(svg, function () {
-      if (running || !seenAgain) {
-        return;
+    var seen = false;
+    var paused = false;
+    var frameId = null;
+    var start = null;
+    var doneReps = 0;
+    var frame = function (now) {
+      if (start === null) {
+        start = now - doneReps * repMs;
       }
-      running = true;
-      seenAgain = false;
-      if (onStart) {
-        onStart();
+      var position = (now - start) / repMs;
+      var rep = Math.floor(position);
+      if (rep > doneReps) {
+        doneReps = rep;
+        if (onRep) {
+          onRep(doneReps);
+        }
       }
-      var start = null;
-      var doneReps = 0;
-      var frame = function (now) {
-        if (start === null) {
-          start = now;
-        }
-        var position = (now - start) / repMs;
-        var rep = Math.floor(position);
-        if (rep > doneReps) {
-          doneReps = rep;
-          if (onRep) {
-            onRep(doneReps);
-          }
-        }
-        if (position >= reps) {
-          drawBody(svg, pose(rest));
-          running = false;
-          if (onEnd) {
-            onEnd();
-          }
-          return;
-        }
-        var phase = position - rep;
-        var depth = phase < 0.5 ? ease(phase * 2) : ease((1 - phase) * 2);
-        drawBody(svg, pose(rest ? 1 - depth : depth));
-        window.requestAnimationFrame(frame);
-      };
-      window.requestAnimationFrame(frame);
-    }, function () {
-      seenAgain = true;
+      var phase = position - rep;
+      var depth = phase < 0.5 ? ease(phase * 2) : ease((1 - phase) * 2);
+      if (resting && resting(rep)) {
+        depth = 0;
+      }
+      drawBody(svg, pose(rest ? 1 - depth : depth));
+      frameId = window.requestAnimationFrame(frame);
+    };
+    var sync = function () {
+      var run = seen && !paused;
+      if (run && frameId === null) {
+        start = null;
+        frameId = window.requestAnimationFrame(frame);
+      } else if (!run && frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+        frameId = null;
+        drawBody(svg, pose(rest));
+      }
+    };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        seen = entries[entries.length - 1].isIntersecting;
+        sync();
+      }, { threshold: 0.3 }).observe(svg);
+    }
+    return function (value) {
+      paused = value;
+      sync();
+    };
+  };
+
+  // One pause button per group of animations (WCAG 2.2.2).
+  var pauseButton = function (after, controls) {
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "motion-toggle";
+    var paused = false;
+    var label = function () {
+      button.textContent = paused ? "Play animation" : "Pause animation";
+      button.setAttribute("aria-pressed", paused ? "true" : "false");
+    };
+    button.addEventListener("click", function () {
+      paused = !paused;
+      controls.forEach(function (control) {
+        control(paused);
+      });
+      label();
     });
+    label();
+    after.appendChild(button);
   };
 
   if (!calm) {
@@ -221,15 +212,26 @@
       var cue = workout.querySelector("[data-cue]");
       var body = workout.querySelector("svg[data-pose]");
       var target = 40;
-      var first = 37;
+      var first = 32;
+      var holdReps = 2;
       var showCount = function (n) {
         counter.textContent = n;
         togo.textContent = n >= target ? "Done" : (target - n) + " to go";
         fill.style.width = (n / target * 100) + "%";
       };
       var hideCue;
-      playReps(body, 3, 1250, function (rep) {
-        showCount(first + rep);
+      // A cycle is 8 counted reps up to 40, then a short rest, then it starts again.
+      var cycle = target - first + holdReps;
+      var stopWorkout = loopReps(body, 1300, function (rep) {
+        var inCycle = rep % cycle;
+        if (inCycle === 0) {
+          showCount(first);
+          return;
+        }
+        if (inCycle > target - first) {
+          return;
+        }
+        showCount(first + inCycle);
         cue.classList.add("show");
         body.classList.add("counted");
         window.clearTimeout(hideCue);
@@ -237,76 +239,66 @@
           cue.classList.remove("show");
           body.classList.remove("counted");
         }, 620);
-      }, function () {
-        showCount(first);
-      }, function () {
-        showCount(target);
-        cue.classList.add("show");
-        body.classList.add("counted");
-        window.clearTimeout(hideCue);
+      }, function (rep) {
+        return rep % cycle >= target - first;
       });
+      showCount(first);
+      var workoutText = document.querySelector(".step-2 .step-text");
+      if (workoutText) {
+        pauseButton(workoutText, [stopWorkout]);
+      }
     }
 
+    var tileControls = [];
     document.querySelectorAll(".tile svg[data-pose]").forEach(function (svg) {
-      var isPlank = svg.getAttribute("data-pose") === "plank";
-      playReps(svg, isPlank ? 3 : 2, isPlank ? 1500 : 1500);
+      tileControls.push(loopReps(svg, svg.getAttribute("data-pose") === "plank" ? 2200 : 1600));
     });
+    var tiles = document.querySelector(".tiles");
+    if (tiles && tileControls.length) {
+      var holder = document.createElement("div");
+      holder.className = "motion-row";
+      tiles.parentNode.insertBefore(holder, tiles.nextSibling);
+      pauseButton(holder, tileControls);
+    }
   }
 
-  /* Example pool. Same rule as the payout code: fee = min(12% of pool, non-finishers' entries),
+  /* Example: what a finisher gets back. Same rule as the payout code, for a group of 10:
+     fee = min(12% of all entries, entries of those who didn't finish),
      each finisher's share is rounded down to the cent. */
   var pool = document.querySelector("[data-pool]");
   if (pool) {
-    var size = 50;
-    var slider = pool.querySelector("[data-finishers]");
+    var size = 10;
+    var slider = pool.querySelector("[data-missed]");
     var people = Array.prototype.slice.call(pool.querySelectorAll(".pool-people i"));
     var out = function (name) {
       return pool.querySelector('[data-out="' + name + '"]');
     };
     var money = function (cents, whole) {
-      var value = cents / 100;
-      return "€" + value.toLocaleString("en-GB", {
+      return "€" + (cents / 100).toLocaleString("en-GB", {
         minimumFractionDigits: whole ? 0 : 2,
         maximumFractionDigits: 2
       });
     };
 
     var calculate = function () {
-      var checked = pool.querySelector('input[name="entry"]:checked');
-      var entry = parseInt(checked.value, 10) * 100;
-      var finished = parseInt(slider.value, 10);
-      var missed = size - finished;
-      var total = size * entry;
+      var entry = parseInt(pool.querySelector('input[name="entry"]:checked').value, 10) * 100;
+      var missed = parseInt(slider.value, 10);
+      var finished = size - missed;
       var theirs = missed * entry;
-      var fee = Math.min(Math.round(total * 12 / 100), theirs);
-      var shared = theirs - fee;
-      var share = Math.floor(shared / finished);
+      var kept = Math.min(Math.round(size * entry * 12 / 100), theirs);
+      var share = Math.floor((theirs - kept) / finished);
 
-      out("finished").textContent = finished;
-      out("finished-key").textContent = finished;
-      out("missed-key").textContent = missed;
-      out("intro").textContent = "Imagine " + size + " people join with " + money(entry, true) + " each, so the pool is " + money(total, true) + ". " + finished + " finish and " + missed + " don't.";
-      out("theirs-label").textContent = "Entries of the " + missed + " who didn't finish";
-      out("theirs").textContent = money(theirs);
-      out("fee-label").textContent = "Holdout's fee, 12% of the " + money(total, true) + " pool";
-      out("fee").textContent = (fee ? "−" : "") + money(fee);
-      out("shared-label").textContent = "Shared among the " + finished + " who finished";
-      out("shared").textContent = money(shared);
+      out("missed").textContent = missed;
       out("each").textContent = money(entry + share);
-      out("explain").textContent = money(entry + share) + " is the " + money(entry, true) + " entry plus a " + money(share) + " share, rounded down to the cent. This is an illustration, not a forecast. What you get depends on who finishes.";
-
-      var message;
       if (missed === 0) {
-        message = "Everyone finished, so there's no fee and everyone gets their entry back.";
-      } else if (fee === theirs) {
-        message = "Few people dropped out, so the fee stops at their entries. Finishers get exactly their entry back.";
+        out("split").textContent = "Everyone finished, so everyone gets their " + money(entry, true) + " entry back.";
+      } else if (share === 0) {
+        out("split").textContent = "Your " + money(entry, true) + " entry back. With this few dropping out, there's no share.";
       } else {
-        message = "The fee comes only from the entries of those who didn't finish.";
+        out("split").textContent = "Your " + money(entry, true) + " entry plus a " + money(share) + " share.";
       }
-      out("message").textContent = message;
-
-      slider.setAttribute("aria-valuetext", finished + " of " + size + " people finish");
-      slider.style.setProperty("--fill", ((finished - slider.min) / (slider.max - slider.min) * 100) + "%");
+      slider.setAttribute("aria-valuetext", missed + " of 10 people don't finish");
+      slider.style.setProperty("--fill", (missed / slider.max * 100) + "%");
       people.forEach(function (person, i) {
         person.classList.toggle("in", i < finished);
       });
