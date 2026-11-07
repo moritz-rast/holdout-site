@@ -235,7 +235,7 @@ svg {
 }
 
 .hero h1 {
-  font-size: clamp(2.75rem, 8.2vw, 6.75rem);
+  font-size: clamp(2.75rem, 7vw, 5.75rem);
   line-height: 1;
   letter-spacing: -0.045em;
 }
@@ -244,11 +244,11 @@ svg {
   display: grid;
   align-content: center;
   justify-items: start;
-  gap: 28px;
+  gap: 32px;
 }
 
 .lead {
-  max-width: 33em;
+  max-width: 24em;
   color: var(--muted);
   font-size: clamp(1.125rem, 1.6vw, 1.3125rem);
   line-height: 1.5;
@@ -291,46 +291,6 @@ svg {
 .chain .now {
   background: var(--orange);
   transform: scale(1.04);
-}
-
-/* Scroll progress: the page is the challenge */
-
-.progress {
-  position: fixed;
-  inset: 0 0 auto;
-  z-index: 20;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-12px);
-  transition: opacity 200ms ease, transform 200ms ease;
-}
-
-.progress.show {
-  opacity: 1;
-  transform: none;
-}
-
-.progress-bar {
-  display: grid;
-  grid-template-columns: repeat(21, 1fr);
-  gap: 3px;
-  padding: 5px;
-}
-
-.progress-bar i {
-  height: 6px;
-  border-radius: 3px;
-  background: var(--track);
-  box-shadow: 0 0 0 1px var(--bg);
-  transition: background-color 180ms ease;
-}
-
-.progress-bar .on {
-  background: var(--ink);
-}
-
-.progress-bar .now {
-  background: var(--orange);
 }
 
 /* Phone */
@@ -477,6 +437,11 @@ svg {
   height: calc(28 * var(--u));
   border-radius: calc(6 * var(--u));
   background: var(--sunk);
+}
+
+.s-chain-14 {
+  grid-template-columns: repeat(14, 1fr);
+  gap: calc(4 * var(--u));
 }
 
 .s-chain .on {
@@ -1487,7 +1452,8 @@ svg {
 .finale .wrap {
   display: grid;
   justify-items: start;
-  padding-block: clamp(72px, 10vw, 128px);
+  gap: 24px;
+  padding-block: clamp(88px, 11vw, 144px);
 }
 
 .finale h2 {
@@ -1495,20 +1461,6 @@ svg {
   font-size: clamp(2.25rem, 6vw, 4.5rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
-}
-
-.finale-chain {
-  display: grid;
-  grid-template-columns: repeat(21, 1fr);
-  gap: clamp(2px, 0.5vw, 6px);
-  width: 100%;
-  margin-block: clamp(24px, 4vw, 40px);
-}
-
-.finale-chain i {
-  height: clamp(16px, 3.2vw, 40px);
-  border-radius: clamp(3px, 0.7vw, 9px);
-  background: #121212;
 }
 
 .finale-text {
@@ -1598,12 +1550,12 @@ svg {
 
 @media (min-width: 720px) {
   .chain {
-    grid-template-columns: repeat(21, 1fr);
-    gap: clamp(4px, 0.7vw, 10px);
+    grid-template-columns: repeat(14, 1fr);
+    gap: clamp(6px, 0.9vw, 12px);
   }
 
   .chain i {
-    aspect-ratio: 0.72;
+    aspect-ratio: 0.9;
   }
 }
 
@@ -1638,15 +1590,6 @@ svg {
   .faq-side {
     position: sticky;
     top: 56px;
-  }
-}
-
-/* Panels stack on top of each other while scrolling, if the window is tall enough. */
-@media (min-width: 900px) and (min-height: 660px) {
-  .step {
-    position: sticky;
-    top: 32px;
-    box-shadow: 0 -18px 48px -24px var(--shadow);
   }
 }
 
@@ -1686,13 +1629,6 @@ svg {
     }
   }
 
-  @supports (animation-timeline: view()) {
-    .in-view {
-      animation: fade-up linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 42%;
-    }
-  }
 }
 
 @keyframes rise {
@@ -1709,12 +1645,6 @@ svg {
   }
 }
 
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1740,9 +1670,7 @@ svg {
   }
 
   .chain i,
-  .progress-bar i,
   .pool-people i,
-  .finale-chain i,
   .s-chain i {
     border: 1px solid CanvasText;
   }
@@ -1750,7 +1678,6 @@ svg {
   .chain .on,
   .chain .now,
   .pool-people .in,
-  .finale-chain i,
   .s-chain .on,
   .s-chain .ok {
     background: CanvasText;
@@ -1768,7 +1695,6 @@ svg {
     --line: #bbb;
   }
 
-  .progress,
   .skip,
   .button,
   .phone,

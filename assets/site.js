@@ -7,53 +7,6 @@
 
   var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Scroll progress: a slim chain at the top fills as you read. */
-  var finale = document.querySelector(".finale");
-  var hero = document.querySelector(".hero");
-
-  if (finale && hero) {
-    var progress = document.createElement("div");
-    var bar = document.createElement("div");
-    progress.className = "progress";
-    progress.setAttribute("aria-hidden", "true");
-    bar.className = "progress-bar";
-    for (var d = 0; d < 21; d++) {
-      bar.appendChild(document.createElement("i"));
-    }
-    progress.appendChild(bar);
-    document.body.appendChild(progress);
-
-    var barBlocks = Array.prototype.slice.call(bar.children);
-    var lastStep = 0;
-    var queued = false;
-    var update = function () {
-      queued = false;
-      var range = finale.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.6;
-      var share = range > 0 ? window.scrollY / range : 0;
-      var step = Math.min(21, Math.max(1, Math.ceil(share * 21)));
-      var finished = share >= 1;
-      progress.classList.toggle("show", hero.getBoundingClientRect().bottom < 40);
-      var key = finished ? 22 : step;
-      if (key === lastStep) {
-        return;
-      }
-      lastStep = key;
-      barBlocks.forEach(function (block, i) {
-        block.classList.toggle("on", i < step - 1 || finished);
-        block.classList.toggle("now", i === step - 1 && !finished);
-      });
-    };
-    var request = function () {
-      if (!queued) {
-        queued = true;
-        window.requestAnimationFrame(update);
-      }
-    };
-    window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", request);
-    update();
-  }
-
   /* Body points: the same style as the app's workout camera. */
   var mix = function (a, b, t) {
     return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
